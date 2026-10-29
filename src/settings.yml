@@ -1,0 +1,47 @@
+---
+name: Planes Overhead (last 5)
+description: Nearest airborne aircraft with bearing; routes via Worker
+strategy: polling
+polling_verb: get
+# Direct (no routes): poll adsb.lol. Recommended (with routes): point at your Worker instead, e.g.
+#   https://trmnl-planes-overhead.<you>.workers.dev/?lat={{ latitude }}&lon={{ longitude }}&nm={{ radius_nm }}
+polling_url: https://api.adsb.lol/v2/lat/{{ latitude }}/lon/{{ longitude }}/dist/{{ radius_nm }}
+polling_headers: |
+  User-Agent: trmnl-planes-overhead/1.1 (byalex33)
+refresh_interval: 15
+no_screen_padding: 'no'
+dark_mode: 'no'
+serverless_language: python
+recipe_overview: |
+  Compact last-5 list differentiated from SkyWatch / Overhead Flight Tracker.
+  Direct polling shows nearest airborne + distance/bearing only (TRMNL cannot
+  chain callsigns into a route API in one refresh). Deploy worker/ for
+  origin→destination (adsb.lol /api/0/route + adsbdb fallback) and optional
+  history. Defaults to Ipswich UK.
+custom_fields:
+  - keyname: latitude
+    field_type: string
+    name: Latitude
+    description: Centre point latitude (decimal degrees).
+    placeholder: "52.0567"
+    default: "52.0567"
+  - keyname: longitude
+    field_type: string
+    name: Longitude
+    description: Centre point longitude (decimal degrees).
+    placeholder: "1.1482"
+    default: "1.1482"
+  - keyname: radius_nm
+    field_type: number
+    name: Radius (nm)
+    description: Search radius in nautical miles (8–25 recommended).
+    placeholder: "12"
+    default: "12"
+    min: 1
+    max: 50
+  - keyname: about
+    name: About This Plugin
+    field_type: author_bio
+    category: travel,nature
+    description: Built by Alex Baldry (Ipswich). Live ADS-B via api.adsb.lol. Worker recommended for flight routes (origin→destination).
+    github_url: https://github.com/byalex33

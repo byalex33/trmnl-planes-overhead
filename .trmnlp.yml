@@ -1,0 +1,16 @@
+---
+watch:
+  - .trmnlp.yml
+  - src
+custom_fields:
+  latitude: "52.0567"
+  longitude: "1.1482"
+  radius_nm: "8"
+time_zone: Europe/London
+transform_runtime: enabled
+variables:
+  trmnl:
+    user:
+      name: Alex Baldry
+    plugin_settings:
+      instance_name: Ipswich

@@ -1,0 +1,24 @@
+<div class="layout layout--col layout--start layout--stretch-x gap--xsmall">
+  <table class="table table--xsmall" data-table-limit="true">
+    <thead>
+      <tr>
+        <th><span class="title title--small">Flight</span></th>
+        <th><span class="title title--small">From you</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in planes limit:5 %}
+        <tr>
+          <td>
+            <span class="label label--small">{{ p.flight }}</span>
+            <span class="label label--small">{% if p.route and p.route != "" %}{{ p.route }}{% else %}{{ p.type }} · {{ p.alt }}{% endif %}</span>
+          </td>
+          <td><span class="label label--small">{{ p.dst_brg }}</span></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="title_bar">
+  <span class="title">Overhead</span>
+</div>

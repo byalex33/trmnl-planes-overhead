@@ -1,0 +1,13 @@
+<div class="layout layout--col layout--center">
+  {% assign p0 = planes | first %}
+  {% if p0 %}
+    <span class="value value--small">{{ p0.flight }}</span>
+    <span class="label">{{ p0.dst_brg }}</span>
+    <span class="label label--small">{% if p0.route and p0.route != "" %}{{ p0.route }}{% else %}{{ p0.type }} · {{ p0.alt }}{% endif %}</span>
+  {% else %}
+    <span class="label">Clear skies</span>
+  {% endif %}
+</div>
+<div class="title_bar">
+  <span class="title">Overhead</span>
+</div>

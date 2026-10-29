@@ -1,0 +1,13 @@
+name = "trmnl-planes-overhead"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# Optional — only needed for ?history=1 rolling list
+# [[kv_namespaces]]
+# binding = "OVERHEAD_KV"
+# id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+LAT = "52.0567"
+LON = "1.1482"
+RADIUS_NM = "12"

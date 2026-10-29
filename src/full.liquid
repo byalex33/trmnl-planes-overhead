@@ -1,0 +1,38 @@
+<div class="layout layout--col layout--start layout--stretch-x gap--small">
+  <span class="label">{{ label }} · {{ count }}{% if airborne_in_radius %}/{{ airborne_in_radius }} airborne{% endif %}{% if total_in_radius %} ({{ total_in_radius }} in range){% endif %}{% unless has_routes %} · routes via Worker{% endunless %}</span>
+  {% if count == 0 %}
+    <span class="title">No airborne aircraft in range</span>
+  {% else %}
+    <table class="table table--small" data-table-limit="true">
+      <thead>
+        <tr>
+          <th><span class="title title--small">Flight</span></th>
+          <th><span class="title title--small">Route</span></th>
+          <th><span class="title title--small">Type</span></th>
+          <th><span class="title title--small">Alt</span></th>
+          <th><span class="title title--small">Speed</span></th>
+          <th><span class="title title--small">From you</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in planes %}
+          <tr>
+            <td>
+              <span class="label">{{ p.flight }}</span>
+              {% if p.airline and p.airline != "" %}<span class="label label--small">{{ p.airline }}</span>{% endif %}
+            </td>
+            <td><span class="label label--small">{% if p.route and p.route != "" %}{{ p.route }}{% else %}—{% endif %}</span></td>
+            <td><span class="label label--small">{{ p.type }}</span></td>
+            <td><span class="label label--small value--tnums">{{ p.alt }}</span></td>
+            <td><span class="label label--small value--tnums">{{ p.gs }} kt</span></td>
+            <td><span class="label label--small value--tnums">{{ p.dst_brg }}</span></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</div>
+<div class="title_bar">
+  <span class="title">Planes Overhead</span>
+  <span class="instance">last 5</span>
+</div>
